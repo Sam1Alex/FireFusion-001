@@ -1,0 +1,69 @@
+:root {
+  font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #eaf2f5;
+  background: #101b24;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+* { box-sizing: border-box; }
+html, body, #app { width: 100%; height: 100%; margin: 0; }
+button { font: inherit; }
+.workspace { position: relative; width: 100%; height: 100%; height: 100dvh; overflow: hidden; background: #dce5e9; }
+.map { position: absolute; inset: 0; z-index: 0; }
+.topbar {
+  position: absolute; z-index: 800; top: 18px; left: 18px; right: 18px;
+  height: 60px; display: flex; align-items: center; gap: 22px;
+  padding: 0 22px; background: rgba(16,27,36,.96); border: 1px solid rgba(255,255,255,.10);
+  border-radius: 12px; box-shadow: 0 12px 36px rgba(11,26,38,.2); backdrop-filter: blur(10px);
+}
+.brand { display: flex; align-items: center; gap: 9px; color: #fff; font-weight: 800; font-size: 21px; letter-spacing: -.8px; text-decoration: none; white-space: nowrap; }
+.brand-icon { width: 30px; height: 30px; color: #ff754c; display: inline-flex; }
+.brand-icon svg { width: 100%; height: 100%; }
+.brand-accent { color: #ff865f; }
+.topbar-separator { height: 27px; width: 1px; background: #394753; }
+.topbar-label { font-size: 13px; font-weight: 650; color: #f0f4f6; }
+.topbar-label-muted { font-weight: 400; color: #96a7b2; }
+.prototype-tag { margin-left: auto; font-size: 10px; letter-spacing: 1.5px; font-weight: 750; color: #a9c6d1; border: 1px solid #405360; border-radius: 5px; padding: 8px 10px; white-space: nowrap; }
+.intro-panel {
+  position: absolute; z-index: 700; top: 98px; left: 18px; width: 290px;
+  background: rgba(16,27,36,.94); border: 1px solid rgba(255,255,255,.10); border-radius: 12px;
+  padding: 21px 22px 18px; box-shadow: 0 12px 32px rgba(11,26,38,.19); backdrop-filter: blur(10px);
+  pointer-events: none;
+}
+.eyebrow { color: #ff9470; letter-spacing: 1.6px; font-weight: 800; font-size: 10px; display: flex; gap: 9px; align-items: center; }
+.live-dot { width: 7px; height: 7px; background: #ff865f; border-radius: 50%; }
+.intro-panel h1 { margin: 15px 0 7px; font-size: 27px; font-weight: 750; line-height: 1.1; letter-spacing: -.8px; }
+.intro-panel p { font-size: 12.5px; color: #b0bfca; line-height: 1.65; margin: 0; }
+.panel-divider { height: 1px; background: #36434d; margin: 17px 0 13px; }
+.panel-foot { font-size: 11.5px; color: #bacbd2; }
+.panel-icon { color: #ff865f; font-size: 16px; margin-right: 8px; }
+.map-tools { position: absolute; right: 20px; top: 100px; z-index: 700; display: flex; flex-direction: column; padding: 5px; background: #152430; border: 1px solid #354550; border-radius: 10px; box-shadow: 0 8px 26px rgba(0,0,0,.19); }
+.tool-button { display: flex; align-items: center; justify-content: center; width: 37px; height: 38px; border: 0; border-radius: 6px; color: #edf5f8; background: transparent; font-size: 23px; cursor: pointer; }
+.tool-button:hover, .tool-button:focus-visible { background: #314654; outline: none; }
+.home-button svg { width: 19px; height: 19px; }
+.tools-rule { background: #3c4e59; height: 1px; margin: 4px 6px; }
+.statusbar { position: absolute; z-index: 700; left: 18px; bottom: 22px; display: flex; align-items: center; gap: 13px; padding: 12px 15px; border: 1px solid rgba(255,255,255,.1); border-radius: 9px; background: rgba(16,27,36,.95); box-shadow: 0 8px 26px rgba(0,0,0,.15); font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 10px; letter-spacing: .45px; }
+.status-title { font-weight: 700; white-space: nowrap; color: #cee6da; }
+.status-dot { display: inline-block; width: 6px; height: 6px; background: #68cf99; border-radius: 50%; margin-right: 6px; }
+.status-separator { height: 15px; width: 1px; background: #445460; }
+#coordinates, #zoom-level { white-space: nowrap; color: #c1ced6; }
+.status-hint { color: #8299a8; margin-left: 11px; white-space: nowrap; }
+.leaflet-container { font-family: inherit; background: #dce5e9; }
+.leaflet-control-attribution { font-size: 10px !important; background: rgba(255,255,255,.86) !important; }
+.leaflet-bottom.leaflet-right { bottom: 2px; right: 4px; }
+@media (max-width: 650px) {
+  .topbar { left: 10px; right: 10px; top: 10px; height: 54px; padding: 0 15px; gap: 13px; }
+  .brand { font-size: 19px; }
+  .brand-icon { width: 26px; height: 26px; }
+  .topbar-separator, .topbar-label-muted, .prototype-tag { display: none; }
+  .topbar-label { margin-left: auto; font-size: 11px; }
+  .intro-panel { left: 10px; top: 76px; width: min(270px, calc(100% - 76px)); padding: 15px 16px; }
+  .intro-panel h1 { font-size: 23px; margin-top: 10px; }
+  .intro-panel p { font-size: 11px; }
+  .panel-divider, .panel-foot { display: none; }
+  .map-tools { right: 10px; top: 76px; }
+  .statusbar { left: 10px; bottom: 28px; gap: 9px; padding: 10px 11px; font-size: 9px; }
+  .status-hint { display: none; }
+}
+@media (max-width: 380px) { .topbar-label, #coordinates { display: none; } }
