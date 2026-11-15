@@ -21,7 +21,7 @@ export function createMap(container, { onViewChange } = {}) {
 
   const map = L.map(container, {
     ...MAP_OPTIONS,
-    maxBounds: bounds,
+    // maxBounds disabled to allow infinite horizontal scrolling
   });
 
   L.tileLayer(TILE_URL, TILE_OPTIONS).addTo(map);

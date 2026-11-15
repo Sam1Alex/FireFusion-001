@@ -3,8 +3,8 @@
  * can be added without changing the map's initialization code.
  */
 export const NORTH_AMERICA_BOUNDS = [
-  [7, -169],
-  [84, -52],
+  [-90, -180],
+  [90, 180],
 ];
 
 export const INITIAL_VIEW_BOUNDS = [
@@ -22,8 +22,8 @@ export const MAP_OPTIONS = {
   zoomDelta: 1,
   zoomControl: false,
   attributionControl: true,
-  worldCopyJump: false,
-  maxBoundsViscosity: 1,
+  worldCopyJump: true,
+  maxBoundsViscosity: 0,
   preferCanvas: true,
 };
 
