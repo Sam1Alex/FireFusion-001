@@ -1,4 +1,3 @@
-import L from 'leaflet';
 import {
   INITIAL_VIEW_BOUNDS,
   MAP_OPTIONS,
@@ -15,6 +14,8 @@ import {
  * map.createPane(...) and map.addLayer(...). They are deliberately absent now.
  */
 export function createMap(container, { onViewChange } = {}) {
+  const L = window.L;
+  if (!L) throw new Error('Map library failed to load. Check your network connection.');
   const bounds = L.latLngBounds(NORTH_AMERICA_BOUNDS);
   const initialBounds = L.latLngBounds(INITIAL_VIEW_BOUNDS);
 

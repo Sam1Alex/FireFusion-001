@@ -1,5 +1,3 @@
-import 'leaflet/dist/leaflet.css';
-import './styles.css';
 import { createMap } from './map/createMap.js';
 
 const app = document.querySelector('#app');
@@ -9,7 +7,7 @@ app.innerHTML = `
     <div id="map" class="map" aria-label="Interactive street map of North America" role="application"></div>
 
     <header class="topbar">
-      <a class="brand" href="/" aria-label="FireFusion home">
+      <a class="brand" href="./" aria-label="FireFusion home">
         <span class="brand-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none"><path d="M13.4 2.5c.5 4.4-3.4 5.9-2.4 9.2-2-1-2.6-3.1-2.5-4.6C5.5 10.2 4 12.9 4 16a8 8 0 0 0 16 0c0-5-3.7-8.6-6.6-13.5Z" fill="currentColor"/><path d="M12.7 11c-.1 2.5-3.4 3.6-3.4 6A3.2 3.2 0 0 0 15.7 17c0-2.4-1.2-4.2-3-6Z" fill="#101b24"/></svg>
         </span>
@@ -51,17 +49,18 @@ app.innerHTML = `
 const coordsLabel = document.querySelector('#coordinates');
 const zoomLabel = document.querySelector('#zoom-level');
 
-const viewer = createMap(document.querySelector('#map'), {
-  onViewChange: ({ lat, lng, zoom }) => {
-    coordsLabel.textContent = `${Math.abs(lat).toFixed(2)}° ${lat >= 0 ? 'N' : 'S'}  ·  ${Math.abs(lng).toFixed(2)}° ${lng >= 0 ? 'E' : 'W'}`;
-    zoomLabel.textContent = `ZOOM ${zoom}`;
-  },
-});
-
-document.querySelector('#zoom-in').addEventListener('click', viewer.zoomIn);
-document.querySelector('#zoom-out').addEventListener('click', viewer.zoomOut);
-document.querySelector('#reset-view').addEventListener('click', viewer.resetView);
-
-if (import.meta.hot) {
-  import.meta.hot.dispose(() => viewer.destroy());
+try {
+  const viewer = createMap(document.querySelector('#map'), {
+    onViewChange: ({ lat, lng, zoom }) => {
+      coordsLabel.textContent = `${Math.abs(lat).toFixed(2)}° ${lat >= 0 ? 'N' : 'S'}  ·  ${Math.abs(lng).toFixed(2)}° ${lng >= 0 ? 'E' : 'W'}`;
+      zoomLabel.textContent = `ZOOM ${zoom}`;
+    },
+  });
+  document.querySelector('#zoom-in').addEventListener('click', viewer.zoomIn);
+  document.querySelector('#zoom-out').addEventListener('click', viewer.zoomOut);
+  document.querySelector('#reset-view').addEventListener('click', viewer.resetView);
+} catch (error) {
+  console.error('FireFusion map initialization failed:', error);
+  document.querySelector('#map').innerHTML = '<div class="map-error" role="alert">Map unavailable. Check your internet connection and reload this page.</div>';
+  document.querySelector('.status-title').textContent = 'MAP UNAVAILABLE';
 }
